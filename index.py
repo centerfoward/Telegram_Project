@@ -1,11 +1,17 @@
 #6765317557:AAHvuR9iD52G2HaXabZcOBNzlk7vTVYyl2U 토큰
-#6732022602 idimport telepot  
+#6732022602 id
 from telegram import Update, InlineKeyboardMarkup,InlineKeyboardButton
 from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler
 
 TOKEN = '6765317557:AAHvuR9iD52G2HaXabZcOBNzlk7vTVYyl2U'  # 텔레그램 봇 API
 async def start(update : Update, context: ContextTypes.DEFAULT_TYPE) :
-    send_msg = "🎄Welcome to the vibrant world of Renewlabs🎄\n🎄          on our official Telegram channel!        🎄" #버튼 상단 메시지 
+    user = update.message.from_user # 봇 탐지를 위해 생성
+    if(user.is_bot):
+        await update.message.reply_text("봇으로 탐지되었습니다.")
+        return
+    elif(user.is_bot == False):
+        await update.message.reply_text("환영합니다")
+    send_msg = "🎄Welcome to the vibrant world of Renewlabs🎄\n🎄          on our official Telegram channel!            🎄" #버튼 상단 메시지 
     btn1 = InlineKeyboardButton(text = "Facebook🪴",url="https://www.facebook.com/renewlabs.official/") # 버튼 설정
     btn2 = InlineKeyboardButton(text = "Instagram🌵",url="https://www.instagram.com/renewlabs.official/")
     btn3 = InlineKeyboardButton(text="X🍃",url="https://twitter.com/renew_labs")
